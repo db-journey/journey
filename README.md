@@ -1,6 +1,6 @@
 # Journey
 
-[![Build Status](https://travis-ci.org/db-journey/journey?branch=master)](https://travis-ci.org/db-journey/journey)
+[![Build Status](https://travis-ci.org/db-journey/journey.svg?branch=master)](https://travis-ci.org/db-journey/journey)
 [![GoDoc](https://godoc.org/github.com/db-journey/journey?status.svg)](https://godoc.org/github.com/db-journey/journey)
 
 Journey is based on the work of @mattes on his tool "migrate": https://github.com/mattes/migrate/
