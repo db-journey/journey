@@ -1,6 +1,28 @@
 language: go
-
 go:
-  - 1.6
-  - 1.7
-  - tip
+- 1.7
+- 1.8
+- tip
+
+before_deploy:
+  - GOOS=linux GOARCH=amd64 go build -a -o build/journey.linux-amd64 -ldflags '-s -w' .
+  - GOOS=darwin GOARCH=amd64 go build -a -o build/journey.darwin-amd64 -ldflags '-s -w' .
+  - GOOS=windows GOARCH=amd64 go build -a -o build/journey.windows-amd64 -ldflags '-s -w' .
+  - find build -name 'migrate*' | xargs -I{} tar czf {}.tar.gz {}
+  - shasum -a 256 build/* > build/sha256sum.txt
+  - cat build/sha256sum.txt
+
+deploy:
+  - provider: releases
+    api_key:
+      secure: Y47mTXZIluEegpjVn5bhV5wcgxBJqsQ6L40Pjm1beJWPdmflVzEh0iHxYR1RcaWcJW3XEsUwS/r81fpflO9bxYcDtV/zNJTuTK9w48sJZjkh5tLJ9LsDsIjmKk1iNYSLhEW+AaUBLNOYRB2grI17E4lmh1r29n1FDl/vpNehFoEyqnKdx28zh/jLxRIqMGsj2NrjVI5EG/9M/F/gXelsrbuMZHoec/i5bk1QMpawAGabjXNZujbmZVbOzNxlAfDP6Fdxb0C/y6+C2EKIxvT5o5hhIsesgMVgpI/5k3tycprYqA7e9GjqO39XHfHaM0J8TKBNiuQMDV8TNCR4ohBTpVOOM2Kz7/IWBKtTp24o0UCX6/a3QcY5e8xdVCDI2noPm/9g1ORSz//7NJO3sPMSqKsTRiiwBAxhSo1iFYaZ7w9KJGgdWQFVr1OT6cXBGhxO6RGnPQ3R6jbDR7bxk6IcQpjKvRMdBiw+UnBQMq5YxUMD6+jDs6B6hMVXpb5mblCcqybNFJe10V7qSc+OZX5ZQZdQOWxb2XlelNP3yuPV5xU5DBwu7R0tNIahJ/t2EPMtkq0GGoKz0DhnmJeRxYrYOsMxBiY+WkbV8QOUPCwffxC8PPka5eMiCsKAzadtembDUoUR9HOtFzdwI+9wizV9A4WlhQEGrxQTT+fThcb7U4s=
+    skip_cleanup: true
+    on:
+      go: 1.8
+      repo: db-journey/journey
+      tags: true
+    file:
+      - build/journey.linux-amd64.tar.gz
+      - build/journey.darwin-amd64.tar.gz
+      - build/journey.windows-amd64.tar.gz
+      - build/sha256sum.txt

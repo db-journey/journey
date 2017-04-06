@@ -1,6 +1,6 @@
 FROM alpine
 RUN apk add --update curl && \
-    curl -OL https://github.com/db-journey/journey/releases/download/v1.4.2/journey-linux-amd64 && \
+    curl -OL https://github.com/db-journey/journey/releases/download/v2.0.0/journey-linux-amd64 && \
     mv journey-linux-amd64 /journey && \
     chmod +x /journey && \
     apk del curl && \
