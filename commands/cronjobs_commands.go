@@ -50,6 +50,11 @@ var startCommand = cli.Command{
 				logger.Info("Running")
 			}
 		}
+		numJobs := len(scheduler.Entries())
+		if numJobs == 0 {
+			logrus.Fatal("No cron job found in ", ctx.String("path"))
+		}
+		logrus.Infof("%d job(s) loaded", numJobs)
 		logrus.Info("Starting Scheduler")
 		scheduler.Start()
 		select {}
