@@ -35,12 +35,16 @@ var startCommand = cli.Command{
 		}
 		scheduler.Logger = func(runs chan *cronjobs.Run) {
 			for run := range runs {
-				logger := logrus.WithField("name", run.Name)
+				logger := logrus.WithFields(
+					logrus.Fields{
+						"name": run.Name,
+						"took": run.Duration,
+					})
 				if run.Error != nil {
 					logger.WithError(run.Error).Error("Failed to run job")
 					continue
 				}
-				logger.Info("Running")
+				logger.Info("Job successful")
 			}
 		}
 		numJobs := len(scheduler.Entries())

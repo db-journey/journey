@@ -1,5 +1,9 @@
 # Journey Changelog
 
+## unreleased
+
+* [scheduler] Add jobs duration to log
+
 ## 2.0.0 - 2017-04-06
 
 This is a breaking change release.
