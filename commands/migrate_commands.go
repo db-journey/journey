@@ -9,8 +9,8 @@ import (
 
 	"github.com/db-journey/migrate"
 	"github.com/db-journey/migrate/direction"
+	"github.com/db-journey/migrate/file"
 	pipep "github.com/db-journey/migrate/pipe"
-	"github.com/mattes/migrate/file"
 	"github.com/urfave/cli"
 )
 
