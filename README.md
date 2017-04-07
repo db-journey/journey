@@ -10,7 +10,7 @@ Journey is based on the work of @mattes on his tool "migrate": https://github.co
 * Super easy to implement [Driver interface](http://godoc.org/github.com/db-journey/migrate/driver#Driver).
 * Gracefully quit running migrations on ``^C``.
 * No magic search paths routines, no hard-coded config files.
-* CLI is build on top of the ``migrate package``.
+* CLI is build on top of the ``migrate`` package.
 
 
 ## Available Drivers
@@ -30,35 +30,44 @@ Need another driver? Just implement the [Driver interface](http://godoc.org/gith
 go get github.com/db-journey/journey
 
 # create new migration file in path
-journey -url driver://url -path ./migrations create migration_file_xyz
+journey --url driver://url --path ./migrations migrate create migration_file_xyz
 
 # apply all available migrations
-journey -url driver://url -path ./migrations up
+journey --url driver://url --path ./migrations migrate up
 
 # roll back all migrations
-journey -url driver://url -path ./migrations down
+journey --url driver://url --path ./migrations migrate down
 
 # roll back the most recently applied migration, then run it again.
-journey -url driver://url -path ./migrations redo
+journey --url driver://url --path ./migrations migrate redo
 
 # run down and then up command
-journey -url driver://url -path ./migrations reset
+journey --url driver://url --path ./migrations migrate reset
 
 # show the current migration version
-journey -url driver://url -path ./migrations version
+journey --url driver://url --path ./migrations migrate version
 
 # apply the next n migrations
-journey -url driver://url -path ./migrations migrate +1
-journey -url driver://url -path ./migrations migrate +2
-journey -url driver://url -path ./migrations migrate +n
+journey --url driver://url --path ./migrations migrate migrate +1
+journey --url driver://url --path ./migrations migrate migrate +2
+journey --url driver://url --path ./migrations migrate migrate +n
 
 # roll back the previous n migrations
-journey -url driver://url -path ./migrations migrate -1
-journey -url driver://url -path ./migrations migrate -2
-journey -url driver://url -path ./migrations migrate -n
+journey --url driver://url --path ./migrations migrate migrate -1
+journey --url driver://url --path ./migrations migrate migrate -2
+journey --url driver://url --path ./migrations migrate migrate -n
 
 # go to specific migration
-journey -url driver://url -path ./migrations goto 1
-journey -url driver://url -path ./migrations goto 10
-journey -url driver://url -path ./migrations goto v
+journey --url driver://url --path ./migrations migrate goto 1
+journey --url driver://url --path ./migrations migrate goto 10
+journey --url driver://url --path ./migrations migrate goto v
+```
+
+## CronJobs
+
+Journey also provides a command to run scheduled jobs on databases:
+
+
+```bash
+journey --url driver://url --path ./cronjobs scheduler start
 ```

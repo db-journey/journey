@@ -14,14 +14,7 @@ import (
 	"github.com/urfave/cli"
 )
 
-var MigrateFlags = []cli.Flag{
-	cli.StringFlag{
-		Name:   "path, p",
-		Usage:  "Migrations path",
-		Value:  "./migrations",
-		EnvVar: "MIGRATIONS_PATH",
-	},
-}
+var MigrateFlags = []cli.Flag{}
 
 //Commands returns the application cli commands:
 //create <name>  Create a new migration
@@ -61,7 +54,7 @@ var createCommand = cli.Command{
 			name = strings.Join(ctx.Args(), "_")
 		}
 
-		migrationFile, err := migrate.Create(ctx.GlobalString("url"), ctx.String("path"), name)
+		migrationFile, err := migrate.Create(ctx.GlobalString("url"), ctx.GlobalString("path"), name)
 		if err != nil {
 			logErr(err).Fatal("Migration failed")
 		}
@@ -69,7 +62,7 @@ var createCommand = cli.Command{
 		log.WithFields(log.Fields{
 			"up":   migrationFile.UpFile.FileName,
 			"down": migrationFile.DownFile.FileName,
-		}).Infof("Version %v migration files created in %v:\n", migrationFile.Version, ctx.String("path"))
+		}).Infof("Version %v migration files created in %v:\n", migrationFile.Version, ctx.GlobalString("path"))
 		return nil
 	},
 }
@@ -81,12 +74,12 @@ var upCommand = cli.Command{
 	Action: func(ctx *cli.Context) error {
 		log.Info("Applying all -up- migrations")
 		pipe := pipep.New()
-		go migrate.Up(pipe, ctx.GlobalString("url"), ctx.String("path"))
+		go migrate.Up(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"))
 		ok := readPipe(pipe)
 		if !ok {
 			os.Exit(1)
 		}
-		logCurrentVersion(ctx.GlobalString("url"), ctx.String("path"))
+		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
 	},
 }
@@ -98,12 +91,12 @@ var downCommand = cli.Command{
 	Action: func(ctx *cli.Context) error {
 		log.Info("Applying all -down- migrations")
 		pipe := pipep.New()
-		go migrate.Down(pipe, ctx.GlobalString("url"), ctx.String("path"))
+		go migrate.Down(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"))
 		ok := readPipe(pipe)
 		if !ok {
 			os.Exit(1)
 		}
-		logCurrentVersion(ctx.GlobalString("url"), ctx.String("path"))
+		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
 	},
 }
@@ -116,12 +109,12 @@ var redoCommand = cli.Command{
 	Action: func(ctx *cli.Context) error {
 		log.Info("Redoing last migration")
 		pipe := pipep.New()
-		go migrate.Redo(pipe, ctx.GlobalString("url"), ctx.String("path"))
+		go migrate.Redo(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"))
 		ok := readPipe(pipe)
 		if !ok {
 			os.Exit(1)
 		}
-		logCurrentVersion(ctx.GlobalString("url"), ctx.String("path"))
+		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
 	},
 }
@@ -132,7 +125,7 @@ var versionCommand = cli.Command{
 	Usage:   "Show current migration version",
 	Flags:   MigrateFlags,
 	Action: func(ctx *cli.Context) error {
-		version, err := migrate.Version(ctx.GlobalString("url"), ctx.String("path"))
+		version, err := migrate.Version(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		if err != nil {
 			logErr(err).Fatal("Unable to fetch version")
 		}
@@ -149,12 +142,12 @@ var resetCommand = cli.Command{
 	Action: func(ctx *cli.Context) error {
 		log.Info("Reseting database")
 		pipe := pipep.New()
-		go migrate.Redo(pipe, ctx.GlobalString("url"), ctx.String("path"))
+		go migrate.Redo(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"))
 		ok := readPipe(pipe)
 		if !ok {
 			os.Exit(1)
 		}
-		logCurrentVersion(ctx.GlobalString("url"), ctx.String("path"))
+		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
 	},
 }
@@ -175,12 +168,12 @@ var migrateCommand = cli.Command{
 		log.Infof("Applying %d migrations", relativeNInt)
 
 		pipe := pipep.New()
-		go migrate.Migrate(pipe, ctx.GlobalString("url"), ctx.String("path"), relativeNInt)
+		go migrate.Migrate(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"), relativeNInt)
 		ok := readPipe(pipe)
 		if !ok {
 			os.Exit(1)
 		}
-		logCurrentVersion(ctx.GlobalString("url"), ctx.String("path"))
+		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
 	},
 }
@@ -200,7 +193,7 @@ var gotoCommand = cli.Command{
 
 		log.Infof("Migrating to version %d", toVersionInt)
 
-		currentVersion, err := migrate.Version(ctx.GlobalString("url"), ctx.String("path"))
+		currentVersion, err := migrate.Version(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		if err != nil {
 			logErr(err).Fatalf("failed to migrate to version %d", toVersionInt)
 		}
@@ -208,12 +201,12 @@ var gotoCommand = cli.Command{
 		relativeNInt := toVersionInt - int(currentVersion)
 
 		pipe := pipep.New()
-		go migrate.Migrate(pipe, ctx.GlobalString("url"), ctx.String("path"), relativeNInt)
+		go migrate.Migrate(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"), relativeNInt)
 		ok := readPipe(pipe)
 		if !ok {
 			os.Exit(1)
 		}
-		logCurrentVersion(ctx.GlobalString("url"), ctx.String("path"))
+		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
 	},
 }

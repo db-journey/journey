@@ -1,6 +1,6 @@
 # Journey Changelog
 
-## 2.0.0 - unreleased
+## 2.0.0 - 2017-04-06
 
 This is a breaking change release.
 The cli now expose two main commands:

@@ -7,14 +7,7 @@ import (
 	"github.com/urfave/cli"
 )
 
-var CronjobsFlags = []cli.Flag{
-	cli.StringFlag{
-		Name:   "path, p",
-		Usage:  "cron files path",
-		Value:  "./cron",
-		EnvVar: "CRONJOBS_PATH",
-	},
-}
+var CronjobsFlags = []cli.Flag{}
 
 func CronjobsCommands() cli.Commands {
 	return cli.Commands{
@@ -35,8 +28,8 @@ var startCommand = cli.Command{
 		}
 
 		scheduler := cronjobs.New(driver)
-		logrus.Info("Loading cron files from ", ctx.String("path"))
-		err = scheduler.ReadFiles(ctx.String("path"))
+		logrus.Info("Loading cron files from ", ctx.GlobalString("path"))
+		err = scheduler.ReadFiles(ctx.GlobalString("path"))
 		if err != nil {
 			logrus.WithError(err).Fatal("Can't load files")
 		}
@@ -52,7 +45,7 @@ var startCommand = cli.Command{
 		}
 		numJobs := len(scheduler.Entries())
 		if numJobs == 0 {
-			logrus.Fatal("No cron job found in ", ctx.String("path"))
+			logrus.Fatal("No cron job found in ", ctx.GlobalString("path"))
 		}
 		logrus.Infof("%d job(s) loaded", numJobs)
 		logrus.Info("Starting Scheduler")

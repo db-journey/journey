@@ -27,5 +27,11 @@ func Flags() []cli.Flag {
 			Value:  "",
 			EnvVar: "DRIVER_URL",
 		},
+		cli.StringFlag{
+			Name:   "path, p",
+			Usage:  "Files path",
+			Value:  "./files",
+			EnvVar: "FILES_PATH",
+		},
 	}
 }
