@@ -10,7 +10,7 @@ import (
 	journey "github.com/db-journey/journey/commands"
 	_ "github.com/db-journey/mysql-driver"
 	_ "github.com/db-journey/postgresql-driver"
-	//_ "github.com/db-journey/sqlite3-driver"
+	_ "github.com/db-journey/sqlite3-driver"
 	"github.com/urfave/cli"
 )
 
