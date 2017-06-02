@@ -1,7 +1,7 @@
 package journey
 
 import (
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/db-journey/cronjobs"
 	"github.com/db-journey/migrate/driver"
 	"github.com/urfave/cli"
