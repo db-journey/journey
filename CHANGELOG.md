@@ -1,7 +1,8 @@
 # Journey Changelog
 
-## unreleased
+## 2.1.0 - 2017-07-07
 
+* [migrate] Add templating support in migration files
 * [scheduler] Add jobs duration to log
 
 ## 2.0.0 - 2017-04-06
