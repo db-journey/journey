@@ -11,6 +11,7 @@ Journey is based on the work of @mattes on his tool "migrate": https://github.co
 * Gracefully quit running migrations on ``^C``.
 * No magic search paths routines, no hard-coded config files.
 * CLI is build on top of the ``migrate`` package.
+* Migration files templating
 
 
 ## Available Drivers
@@ -71,3 +72,20 @@ Journey also provides a command to run scheduled jobs on databases:
 ```bash
 journey --url driver://url --path ./cronjobs scheduler start
 ```
+
+## Migration files templating
+
+Journey supports dynamic migrations files, by using go templates.
+
+If a file in the migrations folder has the extension `.tpl` (it must match the driver file extensions, so `.sql.tpl` for sql drivers), it will parsed and executed using journey current environment.
+
+Example:
+
+```bash
+$ echo "create table {{.TABLE}} (id int64, name text);" >> files/20170707204006_template.up.sql.tpl
+$ TABLE=a_table journey migrate
+```
+
+For more information about go templating, refer to the official doc: https://golang.org/pkg/text/template/
+
+This feature is particularly usefull to avoid leaving sensitive data in migrations, or to make adjustments based on current environment.
