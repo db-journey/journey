@@ -11,6 +11,7 @@ import (
 	_ "github.com/db-journey/mysql-driver"
 	_ "github.com/db-journey/postgresql-driver"
 	_ "github.com/db-journey/sqlite3-driver"
+	_ "github.com/nexdrew/cockroachdb-driver"
 	"github.com/urfave/cli"
 )
 
