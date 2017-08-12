@@ -20,6 +20,7 @@ Journey is based on the work of @mattes on his tool "migrate": https://github.co
  * [Cassandra](https://github.com/db-journey/cassandra-driver)
  * [SQLite](https://github.com/db-journey/sqlite3-driver)
  * [MySQL](https://github.com/db-journey/mysql-driver) ([experimental](https://github.com/mattes/migrate/issues/1#issuecomment-58728186))
+ * [CockroachDB](https://github.com/nexdrew/cockroachdb-driver)
  * Bash (planned)
 
 Need another driver? Just implement the [Driver interface](http://godoc.org/github.com/db-journey/migrate/driver#Driver) and open a PR.
