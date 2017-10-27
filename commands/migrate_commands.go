@@ -153,11 +153,12 @@ var resetCommand = cli.Command{
 }
 
 var migrateCommand = cli.Command{
-	Name:      "migrate",
-	Aliases:   []string{"m"},
-	Usage:     "Apply migrations -n|+n",
-	ArgsUsage: "<n>",
-	Flags:     MigrateFlags,
+	Name:            "migrate",
+	Aliases:         []string{"m"},
+	Usage:           "Apply migrations -n|+n",
+	ArgsUsage:       "<n>",
+	Flags:           MigrateFlags,
+	SkipFlagParsing: true,
 	Action: func(ctx *cli.Context) error {
 		relativeN := ctx.Args().First()
 		relativeNInt, err := strconv.Atoi(relativeN)
