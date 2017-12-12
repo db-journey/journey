@@ -6,8 +6,6 @@ go:
 
 before_deploy:
   - GOOS=linux GOARCH=amd64 ENABLE_CGO=1 go build -a -o build/journey.linux-amd64 -ldflags '-s -w' .
-  - GOOS=darwin GOARCH=amd64 ENABLE_CGO=1 go build -a -o build/journey.darwin-amd64 -ldflags '-s -w' .
-  - GOOS=windows GOARCH=amd64 ENABLE_CGO=1 go build -a -o build/journey.windows-amd64 -ldflags '-s -w' .
   - find build -name 'journey*' | xargs -I{} tar czf {}.tar.gz {}
   - shasum -a 256 build/* > build/sha256sum.txt
   - cat build/sha256sum.txt
@@ -23,6 +21,4 @@ deploy:
       tags: true
     file:
       - build/journey.linux-amd64.tar.gz
-      - build/journey.darwin-amd64.tar.gz
-      - build/journey.windows-amd64.tar.gz
       - build/sha256sum.txt
