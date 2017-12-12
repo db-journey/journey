@@ -24,7 +24,7 @@ func main() {
 func App() *cli.App {
 	app := cli.NewApp()
 	app.Usage = "Migrations and cronjobs for databases"
-	app.Version = "2.1.0"
+	app.Version = "2.1.1"
 
 	app.Flags = journey.Flags()
 

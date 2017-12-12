@@ -1,9 +1,10 @@
-FROM alpine
-RUN apk add --update curl && \
-    curl -OL https://github.com/db-journey/journey/releases/download/v2.1.0/journey-linux-amd64 && \
-    mv journey-linux-amd64 /journey && \
-    chmod +x /journey && \
-    apk del curl && \
-    rm -rf /var/cache/apk/*
-RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
-ENTRYPOINT /journey
+FROM debian
+RUN apt update && \
+    apt install -y curl && \
+    curl -OL --fail https://github.com/db-journey/journey/releases/download/v2.1.1/journey.linux-amd64.tar.gz && \
+    tar xvzf journey.linux-amd64.tar.gz && \
+    mv build/journey.linux-amd64 /usr/local/bin/journey && \
+    chmod +x /usr/local/bin/journey && \
+    apt remove -y curl && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ENTRYPOINT /usr/local/bin/journey

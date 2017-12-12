@@ -1,5 +1,9 @@
 # Journey Changelog
 
+## 2.1.1 - 2017-12-12
+
+* Fix docker image building
+
 ## 2.1.0 - 2017-07-07
 
 * [migrate] Add templating support in migration files
