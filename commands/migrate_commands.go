@@ -1,16 +1,12 @@
 package journey
 
 import (
-	"os"
 	"strconv"
 	"strings"
 
 	log "github.com/sirupsen/logrus"
 
 	"github.com/db-journey/migrate"
-	"github.com/db-journey/migrate/direction"
-	"github.com/db-journey/migrate/file"
-	pipep "github.com/db-journey/migrate/pipe"
 	"github.com/urfave/cli"
 )
 
@@ -73,11 +69,9 @@ var upCommand = cli.Command{
 	Flags: MigrateFlags,
 	Action: func(ctx *cli.Context) error {
 		log.Info("Applying all -up- migrations")
-		pipe := pipep.New()
-		go migrate.Up(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"))
-		ok := readPipe(pipe)
-		if !ok {
-			os.Exit(1)
+		err := migrate.Up(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		if err != nil {
+			logErr(err).Fatal("Failed to apply all -up- migrations")
 		}
 		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
@@ -90,11 +84,9 @@ var downCommand = cli.Command{
 	Flags: MigrateFlags,
 	Action: func(ctx *cli.Context) error {
 		log.Info("Applying all -down- migrations")
-		pipe := pipep.New()
-		go migrate.Down(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"))
-		ok := readPipe(pipe)
-		if !ok {
-			os.Exit(1)
+		err := migrate.Down(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		if err != nil {
+			logErr(err).Fatal("Failed to apply all -down- migrations")
 		}
 		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
@@ -108,12 +100,8 @@ var redoCommand = cli.Command{
 	Flags:   MigrateFlags,
 	Action: func(ctx *cli.Context) error {
 		log.Info("Redoing last migration")
-		pipe := pipep.New()
-		go migrate.Redo(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"))
-		ok := readPipe(pipe)
-		if !ok {
-			os.Exit(1)
-		}
+		err := migrate.Redo(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		logErr(err).Fatal("Failed to redo last migration")
 		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
 	},
@@ -141,11 +129,9 @@ var resetCommand = cli.Command{
 	Flags: MigrateFlags,
 	Action: func(ctx *cli.Context) error {
 		log.Info("Reseting database")
-		pipe := pipep.New()
-		go migrate.Redo(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"))
-		ok := readPipe(pipe)
-		if !ok {
-			os.Exit(1)
+		err := migrate.Redo(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		if err != nil {
+			logErr(err).Fatal("Failed to reset database")
 		}
 		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
@@ -168,11 +154,9 @@ var migrateCommand = cli.Command{
 
 		log.Infof("Applying %d migrations", relativeNInt)
 
-		pipe := pipep.New()
-		go migrate.Migrate(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"), relativeNInt)
-		ok := readPipe(pipe)
-		if !ok {
-			os.Exit(1)
+		err = migrate.Migrate(ctx.GlobalString("url"), ctx.GlobalString("path"), relativeNInt)
+		if err != nil {
+			logErr(err).Fatalf("Failed to apply %d migrations", relativeNInt)
 		}
 		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
@@ -201,11 +185,9 @@ var gotoCommand = cli.Command{
 
 		relativeNInt := toVersionInt - int(currentVersion)
 
-		pipe := pipep.New()
-		go migrate.Migrate(pipe, ctx.GlobalString("url"), ctx.GlobalString("path"), relativeNInt)
-		ok := readPipe(pipe)
-		if !ok {
-			os.Exit(1)
+		err = migrate.Migrate(ctx.GlobalString("url"), ctx.GlobalString("path"), relativeNInt)
+		if err != nil {
+			logErr(err).Fatalf("Failed to migrate to vefrsion %d", toVersionInt)
 		}
 		logCurrentVersion(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		return nil
@@ -214,40 +196,6 @@ var gotoCommand = cli.Command{
 
 func logErr(err error) *log.Entry {
 	return log.WithError(err)
-}
-
-// readPipe reads items from a chan and returns a boolean and the number of migration files executed
-func readPipe(pipe chan interface{}) (ok bool) {
-	okFlag := true
-	if pipe != nil {
-		for {
-			select {
-			case item, more := <-pipe:
-				if !more {
-					return okFlag
-				}
-				switch item.(type) {
-
-				case error:
-					log.Error(item.(error).Error())
-					okFlag = false
-
-				case file.File:
-					f := item.(file.File)
-					dir := "up"
-					if f.Direction == direction.Down {
-						dir = "down"
-					}
-
-					log.WithField("dir", dir).Infof("%s", f.FileName)
-
-				default:
-					log.Info(item)
-				}
-			}
-		}
-	}
-	return okFlag
 }
 
 func logCurrentVersion(url, migrationsPath string) {
