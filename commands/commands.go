@@ -1,6 +1,8 @@
 package journey
 
-import "github.com/urfave/cli"
+import (
+	"github.com/urfave/cli"
+)
 
 func Commands() cli.Commands {
 	return cli.Commands{
