@@ -1,5 +1,11 @@
 # Journey Changelog
 
+## 2.2.0 - 2018-01-22
+
+- Update to migrate [v2.0.0](https://github.com/db-journey/migrate/releases/tag/v2.0.0)
+- [Feature] apply specific version (run up migration)
+- [Feature] rollback specific version (run down migration)
+
 ## 2.1.1 - 2017-12-12
 
 * Fix docker image building
