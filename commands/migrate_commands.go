@@ -260,7 +260,7 @@ var gotoCommand = cli.Command{
 			logErr(err).Fatalf("failed to migrate to version %d", toVersionInt)
 		}
 
-		err = migrate.GoTo(mctx, int(currentVersion), toVersionInt)
+		err = migrate.GoTo(mctx, currentVersion, file.Version(toVersionInt))
 		if err != nil {
 			logErr(err).Fatalf("Failed to migrate to vefrsion %d", toVersionInt)
 		}
