@@ -1,10 +1,14 @@
 # Journey Changelog
 
+## 2.2.1 - 2019-09-14
+
+* Add go modules support
+
 ## 2.2.0 - 2018-01-22
 
-- Update to migrate [v2.0.0](https://github.com/db-journey/migrate/releases/tag/v2.0.0)
-- [Feature] apply specific version (run up migration)
-- [Feature] rollback specific version (run down migration)
+* Update to migrate [v2.0.0](https://github.com/db-journey/migrate/releases/tag/v2.0.0)
+* [Feature] apply specific version (run up migration)
+* [Feature] rollback specific version (run down migration)
 
 ## 2.1.1 - 2017-12-12
 
@@ -20,8 +24,8 @@
 This is a breaking change release.
 The cli now expose two main commands:
 
-- "migrate", the old behaviour
-- "cronjobs", added in this release
+* "migrate", the old behaviour
+* "cronjobs", added in this release
 
 ie: old params and commands are working if using `journey migrate [...]`
 
