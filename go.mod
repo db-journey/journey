@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	github.com/db-journey/bash-driver v0.0.0-20180123005825-6372d272f1cb
-	github.com/db-journey/cassandra-driver v0.0.0-20180123012042-d86f4292d17e
+	github.com/db-journey/cassandra-driver v0.0.0-20190926171725-08ba6fd37055
 	github.com/db-journey/crate-driver v0.0.0-20180123012126-210b307cb03a
 	github.com/db-journey/cronjobs v1.0.4
 	github.com/db-journey/journey v2.2.0+incompatible
