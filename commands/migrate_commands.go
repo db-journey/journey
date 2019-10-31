@@ -116,7 +116,9 @@ var redoCommand = cli.Command{
 		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
 		defer cancel()
 		err := migrate.Redo(mctx)
-		logErr(err).Fatal("Failed to redo last migration")
+		if err != nil {
+			logErr(err).Fatal("Failed to redo last migration")
+		}
 		logCurrentVersion(mctx, migrate)
 		return nil
 	},
