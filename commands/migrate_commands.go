@@ -9,8 +9,8 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/db-journey/migrate"
-	"github.com/db-journey/migrate/file"
+	"github.com/db-journey/migrate/v2"
+	"github.com/db-journey/migrate/v2/file"
 	"github.com/urfave/cli"
 )
 

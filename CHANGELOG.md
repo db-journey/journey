@@ -1,5 +1,9 @@
 # Journey Changelog
 
+## 2.2.2 - 2019-11-04
+
+* Update dependencies, fix compilation for go >= 1.11
+
 ## 2.2.1 - 2019-09-14
 
 * Add go modules support
