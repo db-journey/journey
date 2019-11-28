@@ -12,8 +12,6 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/db-journey/bash-driver v0.0.0-20180123005825-6372d272f1cb h1:1IcEOSy45e6u/T7UQyV9KP4OGSmZiA7ew15AHCKRsxw=
 github.com/db-journey/bash-driver v0.0.0-20180123005825-6372d272f1cb/go.mod h1:GkU3oc2/TvQzfvpZZ1aiJI4zimplwhN9FUPjPCG9E1Y=
-github.com/db-journey/cassandra-driver v0.0.0-20180123012042-d86f4292d17e h1:wUbjTQXcvQHomWL7fN6Y6nGIXGMVsG+SpGutG0XWftw=
-github.com/db-journey/cassandra-driver v0.0.0-20180123012042-d86f4292d17e/go.mod h1:AIpYy47UbVuMN8xhF7gbupSCd4hmupEiMaXTk95eEPY=
 github.com/db-journey/cassandra-driver v0.0.0-20190926171725-08ba6fd37055 h1:POjSOiB9KeMmgnyfReJNTBaJtUPLPXYWqAtmlFelRGg=
 github.com/db-journey/cassandra-driver v0.0.0-20190926171725-08ba6fd37055/go.mod h1:8Oir+CvqXq+2AMztpGbalVC2UlOOG3p/Nykg3m64o04=
 github.com/db-journey/crate-driver v0.0.0-20180123012126-210b307cb03a h1:exHCtYdkp8IWCZnNs2XhcrswYu3jZ29kuul3gl9iis8=
@@ -24,16 +22,12 @@ github.com/db-journey/journey v2.2.0+incompatible h1:vQf3IFdlidQvUJbU5WhGCk7B/cI
 github.com/db-journey/journey v2.2.0+incompatible/go.mod h1:Gwh5fj7YXhG1eJBhpN/IZ+mn1nObd9xsuEqnUTSgNHE=
 github.com/db-journey/migrate v2.0.0+incompatible h1:heh263YgHne8Fp+XvgDf427MjfB4jV1W19O+7vqU3pU=
 github.com/db-journey/migrate v2.0.0+incompatible/go.mod h1:mJTA43EQJ94pqUpLXH0qsTgn7OnO56iLy2q5ywaYUy4=
-github.com/db-journey/mysql-driver v0.0.0-20180123011942-9408b10062f1 h1:G6axWRJQKwLJ16IC9fYrbWBokPvrwGQDNQIVfiEeKx0=
-github.com/db-journey/mysql-driver v0.0.0-20180123011942-9408b10062f1/go.mod h1:1jvnHudnkCFC0subnpPskH/P77/W5mHBrNSL7BTaGII=
+github.com/db-journey/migrate/v2 v2.0.3 h1:X8JdqRAamoawqmgtMTJEfjjA1DxcDilArupTIxbDAko=
+github.com/db-journey/migrate/v2 v2.0.3/go.mod h1:VUDXMSsL9smYwyNlfrmMeHXOEwmy7sPVZsidSdYk3qg=
 github.com/db-journey/mysql-driver v0.0.0-20190914135739-ff1e682e55d1 h1:P6snQ1jNIUxMLC9ABzAKKbmZWgQxW+oquMipE64HLE4=
 github.com/db-journey/mysql-driver v0.0.0-20190914135739-ff1e682e55d1/go.mod h1:r/f+plel3B1S9Qv5Cc1OQesraRpHwagRaw8LE0cWc7k=
-github.com/db-journey/postgresql-driver v0.0.0-20180123012022-69d474584d86 h1:w3BeoQDUnKyskyboiFpu7uqof8ub3tArrLRE5VKvADc=
-github.com/db-journey/postgresql-driver v0.0.0-20180123012022-69d474584d86/go.mod h1:qJYC/3EP/xvDRTTNsFMKMtiekLizPVl9A87eJnXRy88=
 github.com/db-journey/postgresql-driver v0.0.0-20190914135041-b502d4210454 h1:RUDSmkM9o4LBaX7/cH8bPtMjLZI7XGE5W+ZXISS5MMM=
 github.com/db-journey/postgresql-driver v0.0.0-20190914135041-b502d4210454/go.mod h1:AP+PCklq/+0BGQCHEMCHptAKB/r7wDgPIySiXUJcdC0=
-github.com/db-journey/sqlite3-driver v0.0.0-20180123012102-2327fffdf41a h1:N1T+9NQx/zpYXRxLTi/iZ2CWwBEF8JyIU+eSixoLfO4=
-github.com/db-journey/sqlite3-driver v0.0.0-20180123012102-2327fffdf41a/go.mod h1:t89IHLF0jZvPxWK/7vU8cx0MONm3Na65iWx+uU17iFc=
 github.com/db-journey/sqlite3-driver v0.0.0-20190914135101-61d2f23fe986 h1:0BwQT1Y88HaaqrhRD4pI0cFMAKucoSsLGlHoDHnAA5M=
 github.com/db-journey/sqlite3-driver v0.0.0-20190914135101-61d2f23fe986/go.mod h1:oAgZvQ7a7W1PbSiwN+nU0CsChB4ciAsVmYVeVrfie8w=
 github.com/go-sql-driver/mysql v1.4.1 h1:g24URVg0OFbNUTx9qqY1IRZ9D9z3iPyi5zKhQZpNwpA=
