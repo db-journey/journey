@@ -9,7 +9,7 @@ require (
 	github.com/db-journey/crate-driver v0.0.0-20180123012126-210b307cb03a
 	github.com/db-journey/cronjobs v1.0.4
 	github.com/db-journey/journey v2.2.0+incompatible
-	github.com/db-journey/migrate/v2 v2.0.3
+	github.com/db-journey/migrate/v2 v2.0.4
 	github.com/db-journey/mysql-driver v0.0.0-20190914135739-ff1e682e55d1
 	github.com/db-journey/postgresql-driver v0.0.0-20190914135041-b502d4210454
 	github.com/db-journey/sqlite3-driver v0.0.0-20190914135101-61d2f23fe986

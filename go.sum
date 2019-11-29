@@ -22,8 +22,8 @@ github.com/db-journey/journey v2.2.0+incompatible h1:vQf3IFdlidQvUJbU5WhGCk7B/cI
 github.com/db-journey/journey v2.2.0+incompatible/go.mod h1:Gwh5fj7YXhG1eJBhpN/IZ+mn1nObd9xsuEqnUTSgNHE=
 github.com/db-journey/migrate v2.0.0+incompatible h1:heh263YgHne8Fp+XvgDf427MjfB4jV1W19O+7vqU3pU=
 github.com/db-journey/migrate v2.0.0+incompatible/go.mod h1:mJTA43EQJ94pqUpLXH0qsTgn7OnO56iLy2q5ywaYUy4=
-github.com/db-journey/migrate/v2 v2.0.3 h1:X8JdqRAamoawqmgtMTJEfjjA1DxcDilArupTIxbDAko=
-github.com/db-journey/migrate/v2 v2.0.3/go.mod h1:VUDXMSsL9smYwyNlfrmMeHXOEwmy7sPVZsidSdYk3qg=
+github.com/db-journey/migrate/v2 v2.0.4 h1:1Bkr3z5GrlUAe82r1u0SH9Zy2xL60eRCJqL7aNataVI=
+github.com/db-journey/migrate/v2 v2.0.4/go.mod h1:VUDXMSsL9smYwyNlfrmMeHXOEwmy7sPVZsidSdYk3qg=
 github.com/db-journey/mysql-driver v0.0.0-20190914135739-ff1e682e55d1 h1:P6snQ1jNIUxMLC9ABzAKKbmZWgQxW+oquMipE64HLE4=
 github.com/db-journey/mysql-driver v0.0.0-20190914135739-ff1e682e55d1/go.mod h1:r/f+plel3B1S9Qv5Cc1OQesraRpHwagRaw8LE0cWc7k=
 github.com/db-journey/postgresql-driver v0.0.0-20190914135041-b502d4210454 h1:RUDSmkM9o4LBaX7/cH8bPtMjLZI7XGE5W+ZXISS5MMM=
