@@ -16,8 +16,8 @@ github.com/db-journey/cassandra-driver v0.0.0-20190926171725-08ba6fd37055 h1:POj
 github.com/db-journey/cassandra-driver v0.0.0-20190926171725-08ba6fd37055/go.mod h1:8Oir+CvqXq+2AMztpGbalVC2UlOOG3p/Nykg3m64o04=
 github.com/db-journey/crate-driver v0.0.0-20180123012126-210b307cb03a h1:exHCtYdkp8IWCZnNs2XhcrswYu3jZ29kuul3gl9iis8=
 github.com/db-journey/crate-driver v0.0.0-20180123012126-210b307cb03a/go.mod h1:z2b48wzjZ1/b3xCBujsi4HlBkxLPWqsuDpho0WvEkRI=
-github.com/db-journey/cronjobs v1.0.4 h1:LB2GymhC1hLiKVzGCm2c0nZMYLNSGbYp/ipORiDy1XQ=
-github.com/db-journey/cronjobs v1.0.4/go.mod h1:NPeYhtchAudmuhaTDr9CNdbNnuIU5YVlh0rOkr8pvJA=
+github.com/db-journey/cronjobs v1.0.5 h1:uJJNRRSPkajxTM8f6LESLkzt4vHHfZE2MDMM4rdLWjY=
+github.com/db-journey/cronjobs v1.0.5/go.mod h1:aeQcUBdRy/hgZdtrXku0MMMBJSPKhbSdsAlfTTxL3j0=
 github.com/db-journey/journey v2.2.0+incompatible h1:vQf3IFdlidQvUJbU5WhGCk7B/cIRFlYfu7Lv5ymXcA4=
 github.com/db-journey/journey v2.2.0+incompatible/go.mod h1:Gwh5fj7YXhG1eJBhpN/IZ+mn1nObd9xsuEqnUTSgNHE=
 github.com/db-journey/migrate v2.0.0+incompatible h1:heh263YgHne8Fp+XvgDf427MjfB4jV1W19O+7vqU3pU=

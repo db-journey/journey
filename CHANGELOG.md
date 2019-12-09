@@ -1,5 +1,9 @@
 # Journey Changelog
 
+## 2.2.4 - 2019-12-09
+
+- Update cronjobs dependency
+
 ## 2.2.3 - 2019-11-29
 
 - Update dependencies

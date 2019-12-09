@@ -7,7 +7,7 @@ require (
 	github.com/db-journey/bash-driver v0.0.0-20180123005825-6372d272f1cb
 	github.com/db-journey/cassandra-driver v0.0.0-20190926171725-08ba6fd37055
 	github.com/db-journey/crate-driver v0.0.0-20180123012126-210b307cb03a
-	github.com/db-journey/cronjobs v1.0.4
+	github.com/db-journey/cronjobs v1.0.5
 	github.com/db-journey/journey v2.2.0+incompatible
 	github.com/db-journey/migrate/v2 v2.0.4
 	github.com/db-journey/mysql-driver v0.0.0-20190914135739-ff1e682e55d1
