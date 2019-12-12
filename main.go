@@ -7,7 +7,7 @@ import (
 	_ "github.com/db-journey/bash-driver"
 	_ "github.com/db-journey/cassandra-driver"
 	_ "github.com/db-journey/crate-driver"
-	journey "github.com/db-journey/journey/commands"
+	journey "github.com/db-journey/journey/v2/commands"
 	_ "github.com/db-journey/mysql-driver"
 	_ "github.com/db-journey/postgresql-driver"
 	_ "github.com/db-journey/sqlite3-driver"
