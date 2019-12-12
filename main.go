@@ -4,13 +4,13 @@ import (
 	"log"
 	"os"
 
-	_ "github.com/db-journey/bash-driver"
-	_ "github.com/db-journey/cassandra-driver"
-	_ "github.com/db-journey/crate-driver"
 	journey "github.com/db-journey/journey/v2/commands"
-	_ "github.com/db-journey/mysql-driver"
-	_ "github.com/db-journey/postgresql-driver"
-	_ "github.com/db-journey/sqlite3-driver"
+	_ "github.com/db-journey/migrate/v2/drivers/bash-driver"
+	_ "github.com/db-journey/migrate/v2/drivers/cassandra-driver"
+	_ "github.com/db-journey/migrate/v2/drivers/crate-driver"
+	_ "github.com/db-journey/migrate/v2/drivers/mysql-driver"
+	_ "github.com/db-journey/migrate/v2/drivers/postgresql-driver"
+	_ "github.com/db-journey/migrate/v2/drivers/sqlite3-driver"
 	"github.com/urfave/cli"
 )
 

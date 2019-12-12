@@ -1,4 +1,4 @@
-package journey
+package commands
 
 import (
 	"github.com/db-journey/cronjobs"
