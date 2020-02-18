@@ -28,7 +28,7 @@ Need another driver? Just implement the [Driver interface](http://godoc.org/gith
 
 ```bash
 # install
-go get github.com/db-journey/journey
+go get github.com/db-journey/journey/v2
 
 # create new migration file in path
 journey --url driver://url --path ./migrations migrate create migration_file_xyz
