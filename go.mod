@@ -10,5 +10,5 @@ require (
 	github.com/gocql/gocql v0.0.0-20200203083758-81b8263d9fe5 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/sirupsen/logrus v1.4.2
-	github.com/urfave/cli v1.22.2
+	github.com/urfave/cli/v2 v2.1.1
 )

@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func Commands() cli.Commands {
@@ -23,17 +23,17 @@ func Commands() cli.Commands {
 
 func Flags() []cli.Flag {
 	return []cli.Flag{
-		cli.StringFlag{
-			Name:   "url, u",
-			Usage:  "Driver URL",
-			Value:  "",
-			EnvVar: "DRIVER_URL",
+		&cli.StringFlag{
+			Name:    "url, u",
+			Usage:   "Driver URL",
+			Value:   "",
+			EnvVars: []string{"DRIVER_URL"},
 		},
-		cli.StringFlag{
-			Name:   "path, p",
-			Usage:  "Files path",
-			Value:  "./files",
-			EnvVar: "FILES_PATH",
+		&cli.StringFlag{
+			Name:    "path, p",
+			Usage:   "Files path",
+			Value:   "./files",
+			EnvVars: []string{"FILES_PATH"},
 		},
 	}
 }
