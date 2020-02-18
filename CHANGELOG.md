@@ -1,5 +1,9 @@
 # Journey Changelog
 
+## 2.2.6 - 2020-02-17
+
+- Update urfave/cli dependency to v2
+
 ## 2.2.5 - 2020-02-16
 
 - Update cronjobs and migrate dependencies

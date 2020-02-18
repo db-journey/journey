@@ -11,7 +11,7 @@ import (
 
 	"github.com/db-journey/migrate/v2"
 	"github.com/db-journey/migrate/v2/file"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 var MigrateFlags = []cli.Flag{}
@@ -40,7 +40,7 @@ func MigrateCommands() cli.Commands {
 	}
 }
 
-var createCommand = cli.Command{
+var createCommand = &cli.Command{
 	Name:      "create",
 	Aliases:   []string{"c"},
 	Usage:     "Create a new migration",
@@ -53,10 +53,10 @@ var createCommand = cli.Command{
 		}
 		// if more than one param is passed, create a concat name
 		if ctx.NArg() != 1 {
-			name = strings.Join(ctx.Args(), "_")
+			name = strings.Join(ctx.Args().Slice(), "_")
 		}
 
-		migrate, _, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, _, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 
 		migrationFile, err := migrate.Create(name)
@@ -67,18 +67,18 @@ var createCommand = cli.Command{
 		log.WithFields(log.Fields{
 			"up":   migrationFile.UpFile.FileName,
 			"down": migrationFile.DownFile.FileName,
-		}).Infof("Version %v migration files created in %v:\n", migrationFile.Version, ctx.GlobalString("path"))
+		}).Infof("Version %v migration files created in %v:\n", migrationFile.Version, ctx.String("path"))
 		return nil
 	},
 }
 
-var upCommand = cli.Command{
+var upCommand = &cli.Command{
 	Name:  "up",
 	Usage: "Apply all -up- migrations",
 	Flags: MigrateFlags,
 	Action: func(ctx *cli.Context) error {
 		log.Info("Applying all -up- migrations")
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		err := migrate.Up(mctx)
 		if err != nil {
@@ -89,13 +89,13 @@ var upCommand = cli.Command{
 	},
 }
 
-var downCommand = cli.Command{
+var downCommand = &cli.Command{
 	Name:  "down",
 	Usage: "Apply all -down- migrations",
 	Flags: MigrateFlags,
 	Action: func(ctx *cli.Context) error {
 		log.Info("Applying all -down- migrations")
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		err := migrate.Down(mctx)
 		if err != nil {
@@ -106,14 +106,14 @@ var downCommand = cli.Command{
 	},
 }
 
-var redoCommand = cli.Command{
+var redoCommand = &cli.Command{
 	Name:    "redo",
 	Aliases: []string{"r"},
 	Usage:   "Roll back most recent migration, then apply it again",
 	Flags:   MigrateFlags,
 	Action: func(ctx *cli.Context) error {
 		log.Info("Redoing last migration")
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		err := migrate.Redo(mctx)
 		if err != nil {
@@ -124,13 +124,13 @@ var redoCommand = cli.Command{
 	},
 }
 
-var versionCommand = cli.Command{
+var versionCommand = &cli.Command{
 	Name:    "version",
 	Aliases: []string{"v"},
 	Usage:   "Show current migration version",
 	Flags:   MigrateFlags,
 	Action: func(ctx *cli.Context) error {
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		version, err := migrate.Version(mctx)
 		if err != nil {
@@ -142,13 +142,13 @@ var versionCommand = cli.Command{
 	},
 }
 
-var resetCommand = cli.Command{
+var resetCommand = &cli.Command{
 	Name:  "reset",
 	Usage: "Down followed by Up",
 	Flags: MigrateFlags,
 	Action: func(ctx *cli.Context) error {
 		log.Info("Reseting database")
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		err := migrate.Redo(mctx)
 		if err != nil {
@@ -159,7 +159,7 @@ var resetCommand = cli.Command{
 	},
 }
 
-var migrateCommand = cli.Command{
+var migrateCommand = &cli.Command{
 	Name:            "migrate",
 	Aliases:         []string{"m"},
 	Usage:           "Apply migrations -n|+n",
@@ -175,7 +175,7 @@ var migrateCommand = cli.Command{
 
 		log.Infof("Applying %d migrations", relativeNInt)
 
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		err = migrate.Migrate(mctx, relativeNInt)
 		if err != nil {
@@ -186,7 +186,7 @@ var migrateCommand = cli.Command{
 	},
 }
 
-var applyCommand = cli.Command{
+var applyCommand = &cli.Command{
 	Name:            "apply",
 	Aliases:         []string{"a"},
 	Usage:           "Run up migration for specific version",
@@ -202,7 +202,7 @@ var applyCommand = cli.Command{
 
 		log.Infof("Applying version %d", versionInt)
 
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		err = migrate.ApplyVersion(mctx, file.Version(versionInt))
 		if err != nil {
@@ -213,7 +213,7 @@ var applyCommand = cli.Command{
 	},
 }
 
-var rollbackCommand = cli.Command{
+var rollbackCommand = &cli.Command{
 	Name:            "rollback",
 	Aliases:         []string{"r"},
 	Usage:           "Run down migration for specific version",
@@ -229,7 +229,7 @@ var rollbackCommand = cli.Command{
 
 		log.Infof("Applying version %d", versionInt)
 
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		err = migrate.RollbackVersion(mctx, file.Version(versionInt))
 		if err != nil {
@@ -240,7 +240,7 @@ var rollbackCommand = cli.Command{
 	},
 }
 
-var gotoCommand = cli.Command{
+var gotoCommand = &cli.Command{
 	Name:      "goto",
 	Aliases:   []string{"g"},
 	Usage:     "Migrate to version <v>",
@@ -255,7 +255,7 @@ var gotoCommand = cli.Command{
 
 		log.Infof("Migrating to version %d", toVersionInt)
 
-		migrate, mctx, cancel := newMigrateWithCtx(ctx.GlobalString("url"), ctx.GlobalString("path"))
+		migrate, mctx, cancel := newMigrateWithCtx(ctx.String("url"), ctx.String("path"))
 		defer cancel()
 		currentVersion, err := migrate.Version(mctx)
 		if err != nil {

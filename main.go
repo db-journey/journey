@@ -11,7 +11,7 @@ import (
 	_ "github.com/db-journey/migrate/v2/drivers/mysql-driver"
 	_ "github.com/db-journey/migrate/v2/drivers/postgresql-driver"
 	_ "github.com/db-journey/migrate/v2/drivers/sqlite3-driver"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func main() {
