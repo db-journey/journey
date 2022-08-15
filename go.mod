@@ -11,4 +11,5 @@ require (
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/urfave/cli/v2 v2.1.1
+	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab // indirect
 )
