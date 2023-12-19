@@ -1,5 +1,6 @@
 # Journey
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 [![Build Status](https://travis-ci.org/db-journey/journey.svg?branch=master)](https://travis-ci.org/db-journey/journey)
 [![GoDoc](https://godoc.org/github.com/db-journey/journey?status.svg)](https://godoc.org/github.com/db-journey/journey)
 
